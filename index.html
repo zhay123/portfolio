@@ -64,21 +64,41 @@
     <div class="container">
 
       <h1><a href="index.html">Yiwen Zha</a></h1>
-    <h2 style="color:#fff">I'm <span id="typing-element" style="color:#12D640"></span></h2>
+   <h2 style="color:#fff">I'm <span id="typing-element" style="color:#12D640"></span></h2>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     var typingElement = document.getElementById('typing-element');
     var words = ['Learner', 'Researcher', 'Educator']; // Add more words as needed
-
     var currentWordIndex = 0;
+    var currentCharIndex = 0;
+    var isDeleting = false;
 
     function updateTypingWord() {
-      typingElement.textContent = words[currentWordIndex];
-      currentWordIndex = (currentWordIndex + 1) % words.length;
+      var currentWord = words[currentWordIndex];
+      var displayedText = currentWord.substring(0, currentCharIndex);
+
+      typingElement.textContent = displayedText;
+
+      if (isDeleting) {
+        currentCharIndex--;
+      } else {
+        currentCharIndex++;
+      }
+
+      // Start deleting when reaching the end of the word
+      if (currentCharIndex === currentWord.length + 1) {
+        isDeleting = true;
+      }
+
+      // Move to the next word and stop deleting when reaching the beginning
+      if (currentCharIndex === -1) {
+        isDeleting = false;
+        currentWordIndex = (currentWordIndex + 1) % words.length;
+      }
     }
 
-    setInterval(updateTypingWord, 2000); // Update every 2 seconds (adjust as needed)
+    setInterval(updateTypingWord, 200); // Adjust speed as needed
   });
 </script>
       
