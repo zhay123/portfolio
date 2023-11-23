@@ -64,11 +64,13 @@
     <div class="container">
 
       <h1><a href="index.html">Yiwen Zha</a></h1>
-      <h2 style="color:#fff">I'm <span class="typing" style="color:#12D640"></span></h2>
-      <script>
+    <h2 style="color:#fff">I'm <span id="typing-element" style="color:#12D640"></span></h2>
+
+<script>
   document.addEventListener('DOMContentLoaded', function () {
     var typingElement = document.getElementById('typing-element');
-    var words = ['Learner', 'Researcher', 'Educator'];
+    var words = ['Learner', 'Researcher', 'Educator']; // Add more words as needed
+
     var currentWordIndex = 0;
 
     function updateTypingWord() {
